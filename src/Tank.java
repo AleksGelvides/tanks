@@ -1,26 +1,29 @@
 public class Tank {
-    int position = 0;
-    int turn = 0;
 
-    public Tank() {
-        this.position = position;
-        this.turn = turn;
-    }
-    public void goForward(int forward) {
-        this.position += forward;
-    }
+    int x, y;
+    int dir;
 
-    public void goBackward(int backward) {
-        this.position -= backward;
+    public void goForward(int i) {
+        if (dir == 0) x += i;
+        else if (dir == 1) y += i;
+        else if (dir == 2) x -= i;
+        else y -= i;
+    }
+    public void goBackward(int i) {
+        goForward(-i);
     }
 
     public void printPosition() {
-        if (turn != 0) {
-            System.out.println("The Tank is at " + position + ", " + turn + " now.");
-        } else System.out.println("The Tank is at " + turn + ", " + position + " now.");
+        System.out.println("The Tank is at " + x +", " + y + " now.");
     }
-    public void turnRight(){
-            position = 0;
 
+    public void turnLeft() {
+        dir--;
+        if (dir == -1) dir = 3;
+    }
+
+    public void turnRight() {
+        dir++;
+        if (dir == 4) dir = 0;
     }
 }
